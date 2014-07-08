@@ -13,12 +13,10 @@ describe Van do
 	end
 
 	it 'should release all bikes to a container' do
-		van.dock(Bike.new)
-		van.dock(Bike.new)
-		van.dock(Bike.new)
+		3.times{ van.dock(Bike.new) }
 		van.release_bikes_to(station)
 		expect(van.bike_count).to eq 0
-		expect(station.bike_count).to eq 2
+		expect(station.bike_count).to eq 3
 	end
 
 	it 'should collect all broken bikes from a container' do
