@@ -9,17 +9,18 @@ class Van
 		end
 
 		def collect_bikes_from(bike_container)
-			while bike_container.broken_bikes.each do |broken_bike|
+			bike_container.broken_bikes.each do |broken_bike|
 				self.dock(broken_bike)
 				bike_container.release(broken_bike)
 			end
 		end
 
 		def release_bikes_to(bike_container)
-			while !empty?
-				release(bikes[0])	
-				bike_container.dock(bikes[0])
+			until empty?
+				bike_container.dock(bikes.first)
+				release(bikes.first)
 			end
+
 		end
 
 end

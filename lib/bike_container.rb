@@ -31,7 +31,7 @@ module BikeContainer
 	end
 
 	def full?
-		bike_count == @capacity
+		bike_count == capacity
 	end
 
 	def empty?
