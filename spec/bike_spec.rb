@@ -37,7 +37,7 @@ describe Bike do
 			bike.dock!.undock!		
 			expect(bike.docked?).to be false
 		end
-
+		
 	end
 
 end
