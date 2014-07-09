@@ -19,6 +19,7 @@ class Bike
 		self
 	end
 
+	#Remove docked functionality? Not really required
 	def docked?
 		@docked
 	end

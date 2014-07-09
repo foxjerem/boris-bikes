@@ -19,6 +19,7 @@ module BikeContainer
 	end
 
 	def dock(bike)
+		#Add addoitional error handling ?
 		raise "Container is full" if full?
 		bikes << bike
 	end
@@ -31,7 +32,7 @@ module BikeContainer
 	end
 
 	def full?
-		bike_count == capacity
+		bike_count >= capacity
 	end
 
 	def empty?

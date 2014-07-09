@@ -19,10 +19,18 @@ describe Van do
 		expect(station.bike_count).to eq 3
 	end
 
-	it 'should collect all broken bikes from a container' do
+	it 'should collect all bikes from a container' do
 		busy_station.dock(Bike.new)
 		busy_station.dock(Bike.new.break!)
 		van.collect_bikes_from(busy_station)
+		expect(van.bike_count).to eq 2
+		expect(busy_station.bike_count).to eq 0
+	end
+
+	it 'should allow the option to collect only broken bikes ' do
+		busy_station.dock(Bike.new)
+		busy_station.dock(Bike.new.break!)
+		van.collect_bikes_from(busy_station, true)
 		expect(van.bike_count).to eq 1
 		expect(busy_station.bike_count).to eq 1
 		expect(busy_station.available_bikes.count).to eq 1
