@@ -14,7 +14,7 @@ describe Garage do
 
 	it 'fixes the bikes' do
 		10.times{van.dock(Bike.new.break!)}
-		van.release_bikes_to(garage)
+		van.release_all_bikes_to(garage)
 		expect(garage.broken_bikes).to eq []
 	end
 

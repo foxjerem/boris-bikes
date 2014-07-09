@@ -18,19 +18,5 @@ class Bike
 		@broken = false
 		self
 	end
-
-	#Remove docked functionality? Not really required
-	def docked?
-		@docked
-	end
-
-	def dock!
-		@docked = true
-		self
-	end
 	
-	def undock!
-		@docked = false
-		self
-	end
 end
