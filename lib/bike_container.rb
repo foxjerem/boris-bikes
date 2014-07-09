@@ -2,6 +2,8 @@ module BikeContainer
 
 	DEFAULT_CAPACITY = 10
 
+	attr_writer :capacity
+
 	def bikes
 		@bikes ||= []
 	end
@@ -10,9 +12,6 @@ module BikeContainer
 		@capacity ||= DEFAULT_CAPACITY
 	end
 
-	def capacity=(value)
-		@capacity = value
-	end
 
 	def bike_count
 		bikes.count
@@ -48,11 +47,11 @@ module BikeContainer
 	end
 
 	def available_bikes
-		bikes.reject {|bike| bike.broken? }
+		bikes.reject(&:broken?)
 	end
 
 	def broken_bikes
-		bikes.reject {|bike| !bike.broken?}
+		bikes.select(&:broken?) 
 	end
 
 end

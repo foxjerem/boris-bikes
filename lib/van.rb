@@ -4,29 +4,37 @@ class Van
 
 	include BikeContainer
 
+	public
+		
 	def initialize(options={})
-		self.capacity = options.fetch(:capacity, capacity)
+		van.capacity = options.fetch(:capacity, capacity)
 	end
 
-	def collect_all_bikes_from(bike_container)
-		until bike_container.empty? or full?
-			dock(bike_container.bikes.first)
-			bike_container.release(bike_container.bikes.first)
+	def collect_all_bikes_from(container)
+		until container.empty? or van.full?
+			van.dock(container.bikes.first)
+			container.release(container.bikes.first)
 		end
 	end
 
-	def collect_broken_bikes_from(bike_container)
-		until bike_container.broken_bikes.empty? or full?
-			dock(bike_container.broken_bikes.first)
-			bike_container.release(bike_container.broken_bikes.first)
+	def collect_broken_bikes_from(container)
+		until container.broken_bikes.empty? or van.full?
+			van.dock(container.broken_bikes.first)
+			container.release(container.broken_bikes.first)
 		end
 	end
 
-	def release_all_bikes_to(bike_container)
-		until empty? or bike_container.full?
-			bike_container.dock(bikes.first)
-			release(bikes.first)
+	def release_all_bikes_to(container)
+		until container.full? or van.empty? 
+			container.dock(bikes.first)
+			van.release(bikes.first)
 		end
+	end	
+
+	private
+		
+	def van 
+		self
 	end
 
 end
