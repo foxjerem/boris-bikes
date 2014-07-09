@@ -19,16 +19,24 @@ module BikeContainer
 	end
 
 	def dock(bike)
-		#Add addoitional error handling ?
-		raise "Container is full" if full?
+		dock_error_handler(bike)
 		bikes << bike
 	end
 
+	def dock_error_handler(bike)
+		raise "Container is full" if full?
+		raise "Argument is not a bike" unless bike.is_a?(Bike)
+	end
+
 	def release(bike)
+		release_error_handler(bike)
+		bikes.delete(bike)
+	end
+
+	def release_error_handler(bike)
 		raise "Container is empty" if empty?
 		raise "Argument is not a bike" unless bike.is_a?(Bike)
 		raise "Bike is not in the container" unless bikes.include?(bike)
-		bikes.delete(bike)
 	end
 
 	def full?

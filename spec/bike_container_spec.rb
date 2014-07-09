@@ -5,8 +5,9 @@ class ContainerHolder; include BikeContainer; end
 
 describe BikeContainer do
 	
-	let(:bike) { Bike.new }
 	let(:holder) { ContainerHolder.new }
+	let(:working_bike) {Bike.new}
+	let(:broken_bike) {Bike.new.break!}
 
 	def fill_holder
 		holder.capacity.times { holder.dock(Bike.new) }
@@ -14,7 +15,7 @@ describe BikeContainer do
 
 	it 'should accept a new bike' do
 		expect(holder.bike_count).to eq 0
-		holder.dock(bike)
+		holder.dock(working_bike)
 		expect(holder.bike_count).to eq 1
 	end
 
@@ -32,20 +33,16 @@ describe BikeContainer do
 
 	it 'should not accept a bike if full' do
 		fill_holder
-		expect{ holder.dock(bike)}.to raise_error(RuntimeError)
+		expect{ holder.dock(working_bike)}.to raise_error(RuntimeError)
 	end
 
 	it 'should provide a list of available bikes' do
-		working_bike, broken_bike = Bike.new, Bike.new
-		broken_bike.break!
 		holder.dock(working_bike)
 		holder.dock(broken_bike)
 		expect(holder.available_bikes).to eq([working_bike])
 	end
 
 	it 'should provide a list of broken bikes' do
-		working_bike, broken_bike = Bike.new, Bike.new
-		broken_bike.break!
 		holder.dock(working_bike)
 		holder.dock(broken_bike)
 		expect(holder.broken_bikes).to eq([broken_bike])
@@ -54,24 +51,23 @@ describe BikeContainer do
 	context 'release' do
 
 		it 'should release a bike' do
-			holder.dock(bike)
-			holder.release(bike)
+			holder.dock(working_bike)
+			holder.release(working_bike)
 			expect(holder.bike_count).to eq 0
 		end
 
 		it 'should raise an error if the argument passed is not a bike' do
-			holder.dock(bike)
+			holder.dock(working_bike)
 			expect{holder.release("grabncbjh")}.to raise_error(RuntimeError)
 		end
 
 		it 'should raise error if bike is not in the holder' do
-			bike2 = Bike.new
-			holder.dock(bike2)
-			expect{holder.release(bike)}.to raise_error(RuntimeError)
+			holder.dock(working_bike)
+			expect{holder.release(broken_bike)}.to raise_error(RuntimeError)
 		end
 
 		it 'should raise error if the holder is empty' do
-			expect{holder.release(bike)}.to raise_error(RuntimeError)
+			expect{holder.release(working_bike)}.to raise_error(RuntimeError)
 		end
 
 	end

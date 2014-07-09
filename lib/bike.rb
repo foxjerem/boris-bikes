@@ -2,7 +2,6 @@ class Bike
 
 	def initialize
 		@broken = false
-		@docked = false
 	end
 
 	def broken?
@@ -18,5 +17,5 @@ class Bike
 		@broken = false
 		self
 	end
-	
+
 end
