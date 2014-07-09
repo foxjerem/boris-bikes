@@ -45,4 +45,12 @@ describe Van do
 		expect(busy_station).to be_full
 	end
 
+	it 'should only collect bikes until the van is full' do
+		big_docking_station = DockingStation.new(capacity: 30)
+		big_docking_station.capacity.times{ big_docking_station.dock(Bike.new) }
+		van.collect_all_bikes_from(big_docking_station)
+		expect(van.bike_count).to eq van.capacity
+		expect(big_docking_station.bike_count).to eq big_docking_station.capacity - van.capacity
+	end
+
 end
