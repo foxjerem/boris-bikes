@@ -1,19 +1,21 @@
 require 'bike_container'
 
-class ContainerHolder; include BikeContainer; end
+shared_examples 'a bike container' do
 
-describe BikeContainer do
-
-	let(:holder) {ContainerHolder.new}
+	let(:holder) {described_class.new}
 	let(:bike) {double :bike}
 	let(:working_bike) {double :working_bike, broken?: false}
 	let(:broken_bike) {double :broken_bike, broken?: true}
 
 	def fill_holder
-		BikeContainer::DEFAULT_CAPACITY.times { holder.dock(bike) }
+		described_class::DEFAULT_CAPACITY.times { holder.dock(bike) }
 	end
 
 	context 'Capacity:' do
+
+		it 'should be empty to start with' do
+			expect(holder).to be_empty
+		end
 
 	 	it 'should know when it is full' do
 		 		fill_holder
@@ -26,7 +28,7 @@ describe BikeContainer do
 
  		it 'should accept a bike' do
  			holder.dock(bike)
- 			expect(holder.bike_count).to be 1
+ 			expect(holder).not_to be_empty
  		end
 
  		it 'should release a bike' do
