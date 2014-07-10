@@ -1,11 +1,12 @@
 require 'bike_container'
+require 'spec_helpers'
 
 shared_examples 'a bike container' do
 
 	let(:holder) {described_class.new}
-	let(:bike) {double :bike}
-	let(:working_bike) {double :working_bike, broken?: false}
-	let(:broken_bike) {double :broken_bike, broken?: true}
+	let(:bike) {double :bike, fix!: nil, is_a?: true}
+	let(:working_bike) {double :working_bike, broken?: false, fix!: nil, is_a?: true}
+	let(:broken_bike) {double :broken_bike, broken?: true, fix!: nil, is_a?: true}
 
 	context 'Capacity:' do
 
@@ -47,9 +48,10 @@ shared_examples 'a bike container' do
  			expect { holder.release(bike) }.to raise_error(RuntimeError) 
  		end
 
- 		# it 'should throw an error if dock argument is not a bike' do
- 		# 	expect { holder.dock("^&^(*") }.to raise_error(RuntimeError)
- 		# end
+ 		it 'should throw an error if dock argument is not a bike' do
+ 			allow(self).to receive(:fix!)
+ 		 	expect { holder.dock("^&^(*") }.to raise_error
+ 		end
 
  		it 'should provide a list of available bikes' do
  			holder.dock(working_bike)

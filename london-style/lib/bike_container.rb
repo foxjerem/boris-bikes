@@ -1,4 +1,3 @@
-
 module BikeContainer
 
 	DEFAULT_CAPACITY = 10
@@ -24,7 +23,7 @@ module BikeContainer
 
 	def dock_error_handler(bike)
 		raise "error: container is full" if full?
-		# raise "error: argument is not a bike" unless bike.is_a?(Bike)
+		raise "error: argument is not a bike" unless bike.is_a?(Bike)
 	end
 
 	def release(bike)
@@ -35,7 +34,7 @@ module BikeContainer
 	def release_error_handler(bike)
 		raise "error: holder is empty" if empty?
 		raise "error: bike is not in the container" unless bikes.include?(bike)
-		# raise "error: argument is not a bike" unless bike.is_a?(Bike)
+		raise "error: argument is not a bike" unless bike.is_a?(Bike)
 	end
 
 	def empty?
@@ -68,10 +67,6 @@ module BikeContainer
 		chosen_bikes.each do |bike|
 			release(bike)
 		end
-	end
-
-	def fill_with(bike)
-		capacity.times {dock(bike)}
 	end
 
 end
