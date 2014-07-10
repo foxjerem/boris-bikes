@@ -6,10 +6,6 @@ describe DockingStation do
 	
 	let(:station) {DockingStation.new}
 
-	def fill_station
-		DockingStation::DEFAULT_CAPACITY.times { station.dock(bike) }
-	end
-
 	it 'should have a capacity' do
 		expect(station.capacity.class).to be Fixnum
 	end
