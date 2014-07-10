@@ -11,14 +11,14 @@ class Van
 	def collect_all_bikes_from(container)
 		all_bikes = container.release_all_bikes
 		all_bikes.each do |bike|
-			dock(bike)
+			van.dock(bike) unless van.full?
 		end
 	end
 
 	def collect_broken_bikes_from(container)
 		bad_bikes = container.release_broken_bikes
 		bad_bikes.each do |bike|
-			dock(bike)
+			van.dock(bike) unless van.full?
 		end
 	end
 

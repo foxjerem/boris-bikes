@@ -19,6 +19,6 @@ describe DockingStation do
  		expect(big_station.capacity).to eq BIG_CAPACITY
  	end
 	
- 	it_behaves_like 'a bike container'
+ 	it_should_behave_like 'a bike container'
 
 end
