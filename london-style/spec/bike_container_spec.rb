@@ -8,6 +8,11 @@ shared_examples 'a bike container' do
 	let(:working_bike) {double :working_bike, broken?: false, fix!: nil, is_a?: true}
 	let(:broken_bike) {double :broken_bike, broken?: true, fix!: nil, is_a?: true}
 
+	def add_two_bikes
+		 	holder.dock(working_bike)
+ 			holder.dock(broken_bike)
+	end
+	
 	context 'Capacity:' do
 
 		it 'should be empty to start with' do
@@ -54,26 +59,23 @@ shared_examples 'a bike container' do
  		end
 
  		it 'should provide a list of available bikes' do
- 			holder.dock(working_bike)
- 			holder.dock(broken_bike)
+ 			add_two_bikes
  			expect(holder.available_bikes).to eq [working_bike]
  		end
 
  		it 'should provide a list of broken bikes' do
- 			holder.dock(working_bike)
- 			holder.dock(broken_bike)
+ 			add_two_bikes
  			expect(holder.broken_bikes).to eq [broken_bike]
  		end
 
  		it 'should be able to release all bikes' do
- 			holder.fill_with(bike)
+ 			add_two_bikes
  			holder.release_all_bikes
  			expect(holder).to be_empty
  		end
 
  		it 'should be able to release all broken bikes' do
- 			holder.dock(broken_bike)
- 			holder.dock(working_bike)
+ 			add_two_bikes
  			holder.release_broken_bikes
  			expect(holder.bikes).to eq [working_bike]
  		end

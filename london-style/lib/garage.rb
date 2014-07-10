@@ -9,8 +9,8 @@ class Garage
 	end
 
 	def dock(bike)
-		bike.fix!	
 		super(bike)
+		bike.fix!	
 	end
 
 end

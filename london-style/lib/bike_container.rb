@@ -55,18 +55,18 @@ module BikeContainer
 
 	def release_all_bikes
 		release_bikes(bikes)
-		bikes
 	end
 
 	def release_broken_bikes
 		release_bikes(broken_bikes)
-		broken_bikes
 	end
 
 	def release_bikes(chosen_bikes)
-		chosen_bikes.each do |bike|
+		return_array = chosen_bikes.clone
+		return_array.each do |bike|
 			release(bike)
 		end
+		return_array
 	end
 
 end

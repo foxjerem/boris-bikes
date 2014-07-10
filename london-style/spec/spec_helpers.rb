@@ -1,5 +1,5 @@
 	public
 
 	def fill_with(bike)
-		capacity.times {dock(bike)}
+		capacity.times { dock(bike) }
 	end
