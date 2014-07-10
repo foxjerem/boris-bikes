@@ -7,11 +7,11 @@ require './lib/garage'
 van = Van.new(capacity: 10)
 garage = Garage.new(capacity: 50)
 station = DockingStation.new(capacity: 10)
-
-10.times{ station.dock(Bike.new.break!) }
+5.times{ station.dock(Bike.new) }
+5.times{ station.dock(Bike.new.break!) }
 puts "station:"
 puts station.bikes.inspect
-van.collect_all_bikes_from(station)
+van.collect_broken_bikes_from(station)
 puts "van collects bikes from station\nvan:"
 puts van.bikes.inspect
 puts "station"
