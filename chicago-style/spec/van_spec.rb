@@ -6,8 +6,8 @@ VAN_CAPACITY = 15
 
 describe Van do
 	
-	let(:van) {Van.new(:capacity => VAN_CAPACITY)}
-	let(:busy_station) {DockingStation.new}
+	let(:van) 					{ Van.new(:capacity => VAN_CAPACITY)	}
+	let(:busy_station) 	{ DockingStation.new									}
 
 	it 'should allow setting capacity on initialising' do
 		expect(van.capacity).to eq VAN_CAPACITY

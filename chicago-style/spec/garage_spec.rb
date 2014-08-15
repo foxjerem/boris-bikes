@@ -8,8 +8,8 @@ LARGE_CAPACITY = 100
 
 describe Garage do
 	
-	let(:garage) {Garage.new(:capacity => LARGE_CAPACITY)}
-	let(:van) {Van.new(:capacity => VAN_CAPACITY)}
+	let(:garage) 	{ Garage.new(:capacity => LARGE_CAPACITY) }
+	let(:van) 		{ Van.new(:capacity => VAN_CAPACITY)			}
 
 	it 'should allow setting capacity on initialising' do
 		expect(garage.capacity).to eq LARGE_CAPACITY

@@ -5,9 +5,9 @@ class ContainerHolder; include BikeContainer; end
 
 describe BikeContainer do
 	
-	let(:holder) { ContainerHolder.new }
-	let(:working_bike) {Bike.new}
-	let(:broken_bike) {Bike.new.break!}
+	let(:holder) 				{ ContainerHolder.new 			}
+	let(:working_bike) 	{ Bike.new									}
+	let(:broken_bike) 	{ Bike.new.break!						}
 
 	def fill_holder
 		holder.capacity.times { holder.dock(Bike.new) }
