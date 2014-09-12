@@ -4,7 +4,9 @@ BIG_CAPACITY = 20
 
 describe DockingStation do
 	
-	let(:station) {DockingStation.new}
+	let(:station) { DockingStation.new }
+
+	it_should_behave_like 'a bike container'
 
 	it 'should have a capacity' do
 		expect(station.capacity.class).to be Fixnum
@@ -18,7 +20,5 @@ describe DockingStation do
  		big_station = DockingStation.new(capacity: BIG_CAPACITY)
  		expect(big_station.capacity).to eq BIG_CAPACITY
  	end
-	
- 	it_should_behave_like 'a bike container'
 
 end

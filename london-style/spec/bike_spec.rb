@@ -2,7 +2,7 @@ require 'bike'
 
 describe Bike do 
 
-	let(:bike) {Bike.new}
+	let(:bike) { Bike.new }
 
 	it 'should not be broken intially' do
 		expect(bike).not_to be_broken

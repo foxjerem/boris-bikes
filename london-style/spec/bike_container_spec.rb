@@ -3,10 +3,10 @@ require 'spec_helpers'
 
 shared_examples 'a bike container' do
 
-	let(:holder) {described_class.new}
-	let(:bike) {double :bike, fix!: nil, is_a?: true}
-	let(:working_bike) {double :working_bike, broken?: false, fix!: nil, is_a?: true}
-	let(:broken_bike) {double :broken_bike, broken?: true, fix!: nil, is_a?: true}
+	let(:holder) 				{ described_class.new																						}
+	let(:bike) 					{ double :bike, fix!: nil, is_a?: true													}
+	let(:working_bike) 	{ double :working_bike, broken?: false, fix!: nil, is_a?: true	}
+	let(:broken_bike) 	{ double :broken_bike, broken?: true, fix!: nil, is_a?: true		}
 
 	def add_two_bikes
 		 	holder.dock(working_bike)

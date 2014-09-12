@@ -2,8 +2,8 @@ require 'garage'
 
 describe Garage do
 
-	let(:garage) {Garage.new(capacity: BikeContainer::DEFAULT_CAPACITY)}
-	let(:bike) {double :bike, fix!: :bike, is_a?: true}
+	let(:garage) 	{ Garage.new(capacity: BikeContainer::DEFAULT_CAPACITY) }
+	let(:bike) 		{ double :bike, fix!: :bike, is_a?: true								}
 
 	it_should_behave_like 'a bike container'
 
